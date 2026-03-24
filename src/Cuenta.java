@@ -24,6 +24,9 @@ public class Cuenta {
         this.datosTitular = datosTitular;
         this.saldo = saldo;
     }
+    public Cuenta(long datosTitular) {
+        this.datosTitular = datosTitular;
+    }
     
     public boolean retirar(double monto) {
         if (monto > LIMITE_DIARIO) {
