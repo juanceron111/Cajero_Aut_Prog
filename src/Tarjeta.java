@@ -27,7 +27,7 @@ public class Tarjeta {
     public void setEstado(boolean estado) { this.estado = estado; }
 
     // Valida la clave y puede bloquear la tarjeta tras 3 intentos fallidos
-    public boolean validarClave(short claveIngresada) {
+    public boolean validarClave(short claveIngresada) throws ExcepcionesCajero{
         if (!estado) {
             return false;
         }

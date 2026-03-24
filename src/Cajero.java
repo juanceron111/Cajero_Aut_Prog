@@ -35,7 +35,7 @@ public class Cajero {
             System.out.println("No se encuentra registrado en el sistema o ingreso un DNI erroneo");
         }
         //buscar la cuenta para la tarjeta
-        Tarjeta tarjeta;
+        Tarjeta tarjeta=null;
         for (Cuenta cuenta : cuentas) {
             if (cuenta.getDatosTitular()==numCuenta) {
                 tarjeta=cuenta.getTarjeta();
@@ -45,7 +45,7 @@ public class Cajero {
         int i=0;
         try {
             while (validacion==false || i>2) {
-                validacion=tarjeta.validarClave;
+                validacion=tarjeta.validarClave(clave);
                 i++;
             }
         } catch (ExcepcionesCajero e) {
