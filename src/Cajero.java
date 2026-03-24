@@ -59,10 +59,23 @@ public class Cajero {
         
     }
     public boolean retirar(double monto){
-        return cuenta.retirar(monto);
+        boolean val=true;
+        if (monto<reservaDinero) {
+            val=cuenta.retirar(monto);
+            reservaDinero-=monto;
+        }
+        return val;
     }
     public boolean consignar(double monto){
-        return cuenta.retirar(monto);
+        boolean val=true;
+        try {
+            val=cuenta.consignar(monto);
+            reservaDinero+=monto;
+        } catch (ExcepcionesCajero ex) {
+           System.out.println(ex.getMessage());
+        }
+        
+        return val;
     }
     public double verSaldo(){
         return cuenta.getSaldo();

@@ -1,15 +1,15 @@
 public class Cuenta {
     public double LIMITE_DIARIO= 2100000;
-    private long datosTitular;
+    private long numCuenta;
     private double saldo;
     private Tarjeta tarjeta;
 
     public long getDatosTitular() {
-        return this.datosTitular;
+        return this.numCuenta;
     }
 
     public void setDatosTitular(long datosTitular) {
-        this.datosTitular = datosTitular;
+        this.numCuenta = datosTitular;
     }
 
     public double getSaldo() {
@@ -21,11 +21,11 @@ public class Cuenta {
     }
 
     public Cuenta(long datosTitular, double saldo) {
-        this.datosTitular = datosTitular;
+        this.numCuenta = datosTitular;
         this.saldo = saldo;
     }
     public Cuenta(long datosTitular) {
-        this.datosTitular = datosTitular;
+        this.numCuenta = datosTitular;
     }
     
     public boolean retirar(double monto) {
