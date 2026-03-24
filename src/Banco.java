@@ -25,7 +25,15 @@ public class Banco {
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }
-    
+    public Cliente getClienpernumber(long n){
+        Cliente nn=null;
+        for (Cliente clientem : clientes) {
+            if (clientem.getDni()==n) {
+                nn=clientem;
+            }
+        }
+        return nn;
+    }
     public ArrayList<Cuenta> gestionarCuentas(long dni){
         ArrayList<Cuenta> cuentasDni=null;
         for (Cliente cliente : clientes) {

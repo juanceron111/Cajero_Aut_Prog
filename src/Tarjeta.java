@@ -40,6 +40,7 @@ public class Tarjeta {
         contadorIntentos++;
         if (contadorIntentos >= 3) {
             estado = false;
+            throw new ExcepcionesCajero("Clave incorrecta por tercera vez tarjeta bloqueada");
         }
         return false;
     }

@@ -30,7 +30,15 @@ public class Cliente {
     public ArrayList<Cuenta> getCuentas() {
         return cuentas;
     }
-
+    public Cuenta getCuentaperNum(long n){
+        Cuenta nn=null;
+        for (Cuenta cuentaM : cuentas) {
+            if (cuentaM.getDatosTitular()==n) {
+                nn=cuentaM;
+            }
+        }
+        return nn;
+    }
     public void addCuenta(Cuenta cuenta) {
         this.cuentas.add(cuenta);
     }

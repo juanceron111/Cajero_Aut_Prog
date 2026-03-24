@@ -36,23 +36,21 @@ public class Cajero {
         }
         //buscar la cuenta para la tarjeta
         Tarjeta tarjeta=null;
-        for (Cuenta cuenta : cuentas) {
-            if (cuenta.getDatosTitular()==numCuenta) {
-                tarjeta=cuenta.getTarjeta();
+        for (Cuenta ncuenta : cuentas) {
+            if (ncuenta.getDatosTitular()==numCuenta) {
+                tarjeta=ncuenta.getTarjeta();
             }
         }
         boolean validacion= false;
-        int i=0;
+        
         try {
-            while (validacion==false || i>2) {
-                validacion=tarjeta.validarClave(clave);
-                i++;
-            }
+            validacion=tarjeta.validarClave(clave);             
+
         } catch (ExcepcionesCajero e) {
             System.out.println(e.getMessage());
         }
         if(validacion==true){
-            this.cuenta=cuenta;
+            this.cuenta=tarjeta.getCuenta();
         }
         
         return validacion;
