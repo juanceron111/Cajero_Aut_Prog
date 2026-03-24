@@ -26,7 +26,15 @@ public class Banco {
         return clientes;
     }
     
-    
+    public ArrayList<Cuenta> gestionarCuentas(long dni){
+        ArrayList<Cuenta> cuentasDni=null;
+        for (Cliente cliente : clientes) {
+            if(cliente.getDni()==dni){
+                cuentasDni=cliente.getCuentas();
+            }
+        }
+        return cuentasDni;
+    }
 
 
 }
