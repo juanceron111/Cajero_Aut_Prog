@@ -1,10 +1,11 @@
 public class Cuenta {
-    public final static double LIMITE_DIARIO= 2100000;
+    public double LIMITE_DIARIO= 2100000;
     private long datosTitular;
     private double saldo;
+    private Tarjeta tarjeta;
 
     public long getDatosTitular() {
-        return datosTitular;
+        return this.datosTitular;
     }
 
     public void setDatosTitular(long datosTitular) {
@@ -23,8 +24,8 @@ public class Cuenta {
         this.datosTitular = datosTitular;
         this.saldo = saldo;
     }
-
-    public boolean retirar(int monto) {
+    
+    public boolean retirar(double monto) {
         if (monto > LIMITE_DIARIO) {
             System.out.println("El monto excede el límite diario.");
             return false;
@@ -33,20 +34,30 @@ public class Cuenta {
             System.out.println("Fondos insuficientes.");
             return false;
         }
-        saldo -= monto;
+        this.LIMITE_DIARIO-=monto;
+        this.saldo -= monto;
+
         return true;
     }
 
-    public boolean consignar(int monto) {
-        if (monto > LIMITE_DIARIO) {
-            System.out.println("El monto excede el límite diario.");
-            return false;
+    public boolean consignar(double monto) throws ExcepcionesCajero{
+        if (monto>1) {
+            this.saldo += monto;
+        }else{
+            throw new ExcepcionesCajero("No se puede agregar saldo negativo");
         }
-        saldo += monto;
         return true;
     }
 
     public long verSaldo() {
         return (long) saldo;
+    }
+
+    public Tarjeta getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
     }
 }

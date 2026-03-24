@@ -1,6 +1,10 @@
+
+import java.util.ArrayList;
+
 public class Cajero {
     private long reservaDinero;
     private Banco banco;
+    private Cuenta cuenta;
 
     public Cajero(Banco banco, long reservaDinero) {
         this.banco = banco;
@@ -23,6 +27,45 @@ public class Cajero {
         this.banco = banco;
     }
 
-
+    public boolean validarCuenta(long dni, long numCuenta, short clave)throws ExcepcionesCajero {
+        ArrayList<Cuenta> cuentas=null;
+        try {
+            cuentas=this.banco.gestionarCuentas(dni); 
+        } catch (Exception e) {
+            System.out.println("No se encuentra registrado en el sistema o ingreso un DNI erroneo");
+        }
+        //buscar la cuenta para la tarjeta
+        Tarjeta tarjeta;
+        for (Cuenta cuenta : cuentas) {
+            if (cuenta.getDatosTitular()==numCuenta) {
+                tarjeta=cuenta.getTarjeta();
+            }
+        }
+        boolean validacion= false;
+        int i=0;
+        try {
+            while (validacion==false || i>2) {
+                validacion=tarjeta.validarClave;
+                i++;
+            }
+        } catch (ExcepcionesCajero e) {
+            System.out.println(e.getMessage());
+        }
+        if(validacion==true){
+            this.cuenta=cuenta;
+        }
+        
+        return validacion;
+        
+    }
+    public boolean retirar(double monto){
+        return cuenta.retirar(monto);
+    }
+    public boolean consignar(double monto){
+        return cuenta.retirar(monto);
+    }
+    public double verSaldo(){
+        return cuenta.getSaldo();
+    }
 
 }
